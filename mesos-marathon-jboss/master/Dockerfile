@@ -19,19 +19,17 @@ RUN cd /opt && tar zxvf /opt/marathon-0.8.0.tgz
 #Install Zookeeper
 RUN wget http://ftp.tc.edu.tw/pub/Apache/zookeeper/zookeeper-3.4.8/zookeeper-3.4.8.tar.gz -P /opt
 RUN cd /opt && tar zxvf /opt/zookeeper-3.4.8.tar.gz
-RUN cp /opt/zookeeper-3.4.8/conf/zoo_sample.cfg zoo.cfg
+RUN cp /opt/zookeeper-3.4.8/conf/zoo_sample.cfg  /opt/zookeeper-3.4.8/conf/zoo.cfg
 
 #Download JBOSS
 RUN wget http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.tar.gz -P /opt
 RUN cd /opt && tar zxvf /opt/jboss-as-7.1.1.Final.tar.gz
-
+ADD ./standalone.xml /opt/jboss-as-7.1.1.Final/standalone/configuration/standalone.xml
 
 #Set Env Variable
-
 ENV JAVA_HOME /jdk1.7.0_71
 ENV ZOOKEEPER_HOME /opt/zookeeper-3.4.8
-ENV MARATHON_HOME=/opt/marathon-0.8.0
-RUN echo "export PATH=$JAVA_HOME/bin:$ZOOKEEPER_HOME/bin:$MARATHON_HOME/bin:$PATH">>/etc/profile
+RUN echo "export PATH=$JAVA_HOME/bin:$ZOOKEEPER_HOME/bin:$PATH">>/etc/profile
 
 #RUN Service
 ADD ./start.sh /start.sh

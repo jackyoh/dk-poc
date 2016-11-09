@@ -1,0 +1,7 @@
+{
+  "id": "registry", 
+  "cmd": "/opt/jboss-as-7.1.1.Final/bin/standalone.sh -Djboss.bind.address.management=0.0.0.0 -Djboss.bind.address=0.0.0.0",
+  "mem": 300,
+  "cpus": 1,
+  "instances": 1
+}
