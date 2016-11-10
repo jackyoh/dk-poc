@@ -16,3 +16,8 @@ Login mesos terminal
 ```
 docker exec -ti mesos-master /bin/bash
 ```
+
+Starting jboss web service
+```
+curl -X POST -H "Content-type: application/json" http://172.17.0.3:8080/v2/apps -d @jboss.json
+```
